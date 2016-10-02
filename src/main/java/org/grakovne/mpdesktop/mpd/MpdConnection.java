@@ -12,6 +12,10 @@ import java.net.UnknownHostException;
 public class MpdConnection implements Connection {
     private MPD mpd;
 
+    public MpdConnection(Server server) {
+        connect(server);
+    }
+
     @Override
     public void connect(Server server) {
         try {
@@ -37,7 +41,7 @@ public class MpdConnection implements Connection {
 
     @Override
     public TrackManager getTrackManager() {
-        return null;
+        return new MpdTrackManager(mpd);
     }
 
     @Override
